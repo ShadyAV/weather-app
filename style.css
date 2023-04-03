@@ -5,6 +5,8 @@
     margin: 0;
     padding: 0;
     font-family: 'Share Tech', sans-serif;
+    --snow: #FFFBFF;
+    --deep-blue: #1A1A2E;
 }
 
 body {
@@ -12,14 +14,15 @@ body {
     flex-direction: column;
     height: 100vh;
     justify-content: space-between;
-    background-color: #1a1a2e;
-    color: #000;
+    background-color: var(--deep-blue);
+    color: var(--deep-blue);
 }
 
 header {
     margin: 0 auto;
-    color: #FFFBFF;
+    color: var(--snow);
     padding: 20px 0 0 0;
+    font-size: 26px;
 }
 
 main {
@@ -27,21 +30,21 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 300px;
-    background-color: #1a1a2e;
-    color: #000;
+    background-color: var(--deep-blue);
+    color: var(--deep-blue);
 }
 
 #inputWrapper {
     display: flex;
     flex-direction: column;
-    color: #FFFBFF;
+    color: var(--snow);
     font-size: 24px;
 }
 
 #cityInput {
     width: 300px;
     height: 50px;
-    border-radius: 6px;
+    border-radius: 3px;
     border: none;
     outline: none;
     font-size: 24px;
@@ -51,8 +54,9 @@ main {
 footer {
     display: flex;
     justify-content: center;
-    color: #FFFBFF;
+    color: var(--snow);
     font-size: 20px;
+    padding: 2px;
 }
 
 #exampleCities {
@@ -68,9 +72,9 @@ footer {
     justify-content: space-between;
     width: 300px;
     height: 150px;
-    background-color: #FFFBFF;
+    background-color: var(--snow);
     padding: 10px;
-    border-radius: 6px;
+    border-radius: 3px;
 }
 
 .upper-example {
