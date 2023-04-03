@@ -4,7 +4,6 @@ async function getData(city = 'Novosibirsk') {
     });
     const data = await response.json();
     console.log(data);
-    console.log(data.current.temp_c);
     return data;
 }
 
@@ -12,23 +11,30 @@ async function createCity(name) {
     const citiesParent = document.getElementById('exampleCities');
     const exampleCity = document.createElement('article');
     exampleCity.classList.add('example-city');
+    citiesParent.appendChild(exampleCity);
     const upPar = document.createElement('p');
     exampleCity.appendChild(upPar);
     upPar.classList.add('upper-example');
     const cityName = document.createElement('h2');
     upPar.appendChild(cityName);
     const temp = document.createElement('p');
+    temp.classList.add('temperature');
     upPar.appendChild(temp);
     const midPar = document.createElement('p');
     exampleCity.appendChild(midPar);
-    const lowPar = document.createElement('p');
+    const lowPar = document.createElement('div');
+    lowPar.classList.add('lower-part');
     exampleCity.appendChild(lowPar);
-    citiesParent.appendChild(exampleCity);
+    const condImg = document.createElement('img');
+    lowPar.appendChild(condImg);
+    const condition = document.createElement('p');
+    lowPar.appendChild(condition);
     cityName.textContent = name;
     let cityData = await fillCity(name);
     temp.textContent = cityData.temp_c;
     midPar.textContent = 'Feels like ' + cityData.feelslike_c;
-    lowPar.textContent = cityData.condition;
+    condition.textContent = cityData.condition;
+    condImg.src = cityData.conditionImg;
 }
 
 async function fillCity(name) {
@@ -36,7 +42,8 @@ async function fillCity(name) {
     const cityData = {
         temp_c: data.current.temp_c,
         feelslike_c: data.current.feelslike_c,
-        condition: data.current.condition.text
+        condition: data.current.condition.text,
+        conditionImg: data.current.condition.icon,
     };
     return cityData;
 }
