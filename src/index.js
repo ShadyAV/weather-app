@@ -56,7 +56,7 @@ async function fillExample(name) {
     return exampleData;
 }
 
-function createCity() {
+function createCity(data) {
     const citiesParent = document.getElementById('exampleCities');
 
     const sideInfoFirst = document.createElement('div');
@@ -78,6 +78,11 @@ function createCity() {
     topInfo.classList.add('hourly-info');
     mainInfo.appendChild(topInfo);
 
+    const topTemp = document.createElement('p');
+    const topCondition = document.createElement('p');
+    topInfo.appendChild(topTemp);
+    topInfo.appendChild(topCondition);
+
     const midInfo = document.createElement('article');
     midInfo.setAttribute('id', 'dailyInfo');
     mainInfo.appendChild(midInfo);
@@ -97,13 +102,24 @@ function createCity() {
     addInfoFourth.classList.add('addInfo');
     sideInfoSecond.appendChild(addInfoFourth);
 
+    topTemp.textContent = data.temp_c;
+    topCondition.textContent = data.condition;
+
 }
 
 async function showCity(name) {
     const citiesParent = document.getElementById('exampleCities');
     citiesParent.textContent = '';
     const data = await getForecast(name);
-    createCity();
+
+    const exampleData = {
+        temp_c: data.current.temp_c + '°',
+        feelslike_c: data.current.feelslike_c + '°',
+        condition: data.current.condition.text,
+        conditionImg: data.current.condition.icon,
+    };
+
+    createCity(exampleData);
 }
 
 window.addEventListener('load', () => {
