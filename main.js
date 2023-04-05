@@ -1,5 +1,13 @@
-async function getData(city = 'Novosibirsk') {
-    let response = await fetch(`https://api.weatherapi.com/v1/current.json?key=e69cacde01d745379a564709230104&q=${city}`, {
+async function getTodayData(city = 'Novosibirsk') {
+    const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=e69cacde01d745379a564709230104&q=${city}`, {
+        mode: 'cors'
+    });
+    const data = await response.json();
+    return data;
+}
+
+async function getForecast(city = 'Novosibirsk') {
+    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=e69cacde01d745379a564709230104&q=${city}&days=3&aqi=yes&alerts=no`, {
         mode: 'cors'
     });
     const data = await response.json();
@@ -7,7 +15,7 @@ async function getData(city = 'Novosibirsk') {
     return data;
 }
 
-async function createCity(name) {
+async function createExample(name) {
     const citiesParent = document.getElementById('exampleCities');
     const exampleCity = document.createElement('article');
     exampleCity.classList.add('example-city');
@@ -30,28 +38,85 @@ async function createCity(name) {
     const condition = document.createElement('p');
     lowPar.appendChild(condition);
     cityName.textContent = name;
-    let cityData = await fillCity(name);
-    temp.textContent = cityData.temp_c;
-    midPar.textContent = 'Feels like ' + cityData.feelslike_c;
-    condition.textContent = cityData.condition;
-    condImg.src = cityData.conditionImg;
+    let exampleData = await fillExample(name);
+    temp.textContent = exampleData.temp_c;
+    midPar.textContent = 'Feels like ' + exampleData.feelslike_c;
+    condition.textContent = exampleData.condition;
+    condImg.src = exampleData.conditionImg;
 }
 
-async function fillCity(name) {
-    const data = await getData(name);
-    const cityData = {
-        temp_c: data.current.temp_c,
-        feelslike_c: data.current.feelslike_c,
+async function fillExample(name) {
+    const data = await getTodayData(name);
+    const exampleData = {
+        temp_c: data.current.temp_c + '°',
+        feelslike_c: data.current.feelslike_c + '°',
         condition: data.current.condition.text,
         conditionImg: data.current.condition.icon,
     };
-    return cityData;
+    return exampleData;
+}
+
+function createCity() {
+    const citiesParent = document.getElementById('exampleCities');
+
+    const sideInfoFirst = document.createElement('div');
+    sideInfoFirst.classList.add('sideInfo');
+    citiesParent.appendChild(sideInfoFirst);
+
+    const addInfoFirst = document.createElement('article');
+    addInfoFirst.classList.add('addInfo');
+    sideInfoFirst.appendChild(addInfoFirst);
+    const addInfoSecond = document.createElement('article');
+    addInfoSecond.classList.add('addInfo');
+    sideInfoFirst.appendChild(addInfoSecond);
+
+    const mainInfo = document.createElement('div');
+    mainInfo.setAttribute('id', 'mainInfo');
+    citiesParent.appendChild(mainInfo);
+
+    const topInfo = document.createElement('article');
+    topInfo.classList.add('hourly-info');
+    mainInfo.appendChild(topInfo);
+
+    const midInfo = document.createElement('article');
+    midInfo.setAttribute('id', 'dailyInfo');
+    mainInfo.appendChild(midInfo);
+
+    const lowInfo = document.createElement('article');
+    lowInfo.classList.add('hourly-info');
+    mainInfo.appendChild(lowInfo);
+
+    const sideInfoSecond = document.createElement('div');
+    sideInfoSecond.classList.add('sideInfo');
+    citiesParent.appendChild(sideInfoSecond);
+
+    const addInfoThird = document.createElement('article');
+    addInfoThird.classList.add('addInfo');
+    sideInfoSecond.appendChild(addInfoThird);
+    const addInfoFourth = document.createElement('article');
+    addInfoFourth.classList.add('addInfo');
+    sideInfoSecond.appendChild(addInfoFourth);
+
+}
+
+async function showCity(name) {
+    const citiesParent = document.getElementById('exampleCities');
+    citiesParent.textContent = '';
+    const data = await getForecast(name);
+    createCity();
 }
 
 window.addEventListener('load', () => {
-    createCity('London');
-    createCity('Berlin');
-    createCity('Paris');
-    createCity('Moscow');
-    createCity('Tokyo');
+    const searchBtn = document.getElementById('searchBtn');
+    searchBtn.addEventListener('click', () => {
+        const cityInput = document.getElementById('cityInput');
+        const inputText = cityInput.value;
+        console.log(inputText);
+        showCity(inputText);
+    });
+    createExample('London');
+    createExample('Berlin');
+    createExample('Paris');
+    createExample('Moscow');
+    createExample('Tokyo');
 })

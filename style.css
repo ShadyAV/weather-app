@@ -19,9 +19,12 @@ body {
 }
 
 header {
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     color: var(--snow);
-    padding: 20px 0 0 0;
+    padding: 20px;
     font-size: 26px;
 }
 
@@ -58,7 +61,7 @@ main {
 }
 
 #searchBtn {
-    padding: 6px;
+    padding: 6px 12px;
     height: 50px;
     outline: none;
     border: none;
@@ -66,6 +69,14 @@ main {
     border-bottom-right-radius: 3px;
     background-color: orange;
     font-size: 24px;
+}
+
+#searchBtn:hover {
+    background-color: orangered;
+}
+
+#searchBtn:active {
+    background-color: orange;
 }
 
 footer {
@@ -80,7 +91,7 @@ footer {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-    margin: 20px;
+    justify-content: center;
 }
 
 .example-city {
@@ -90,7 +101,7 @@ footer {
     width: 300px;
     height: 150px;
     background-color: var(--snow);
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 3px;
     font-size: 20px;
 }
@@ -110,4 +121,50 @@ footer {
 .lower-part {
     display: flex;
     align-items: center;
+}
+
+#mainInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hourly-info {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    height: 100px;
+    background-color: var(--snow);
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 20px;
+}
+
+#dailyInfo {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    height: 400px;
+    background-color: var(--snow);
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 20px;
+}
+
+.addInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 150px;
+    height: 150px;
+    background-color: var(--snow);
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 20px;
+}
+
+.sideInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
