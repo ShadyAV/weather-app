@@ -24,7 +24,7 @@ header {
     justify-content: space-evenly;
     flex-wrap: wrap;
     color: var(--snow);
-    padding: 20px;
+    padding: 30px 20px;
     font-size: 26px;
 }
 
@@ -113,7 +113,7 @@ footer {
 }
 
 .temperature {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
     color: royalblue;
 }
@@ -129,7 +129,7 @@ footer {
     gap: 20px;
 }
 
-.hourly-info {
+.general-info {
     display: flex;
     justify-content: space-between;
     width: 400px;
@@ -138,17 +138,36 @@ footer {
     padding: 10px 20px;
     border-radius: 3px;
     font-size: 20px;
+    box-shadow: 0 0 3px var(--snow);
+}
+
+.hourly-info {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+    height: 130px;
+    background-color: var(--snow);
+    padding: 10px 0px;
+    border-radius: 3px;
+    font-size: 20px;
+    box-shadow: 0 0 3px var(--snow);
+}
+
+.hourly-info-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #dailyInfo {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     width: 400px;
-    height: 400px;
     background-color: var(--snow);
     padding: 10px 20px;
     border-radius: 3px;
     font-size: 20px;
+    box-shadow: 0 0 3px var(--snow);
 }
 
 .addInfo {
@@ -161,10 +180,29 @@ footer {
     padding: 10px 20px;
     border-radius: 3px;
     font-size: 20px;
+    box-shadow: 0 0 3px var(--snow);
 }
 
 .sideInfo {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.conditionAndImg {
+    display: flex;
+    align-items: center;
+}
+
+.temperatureTop {
+    font-size: 36px;
+    font-weight: 600;
+    color: royalblue;
+    padding: 6px;
+}
+
+.daily-info-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
