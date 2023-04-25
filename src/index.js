@@ -24,6 +24,16 @@ window.addEventListener('load', () => {
         const inputText = cityInput.value;
         showCity(inputText);
     });
+    const appTitle = document.getElementById('appTitle');
+    appTitle.addEventListener('click', () => {
+        const citiesParent = document.getElementById('exampleCities');
+        citiesParent.textContent = '';
+        createExample('London');
+        createExample('Berlin');
+        createExample('Paris');
+        createExample('Moscow');
+        createExample('Tokyo');
+    });
     createExample('London');
     createExample('Berlin');
     createExample('Paris');

@@ -114,14 +114,14 @@ function createRightSide() {
 function createCity(data) {
     const citiesParent = document.getElementById('exampleCities');
 
-    const sideInfoFirst = createLeftSide();
-    citiesParent.appendChild(sideInfoFirst);
+    //const sideInfoFirst = createLeftSide();
+    //citiesParent.appendChild(sideInfoFirst);
 
     const mainInfo = createMainInfo(data);
     citiesParent.appendChild(mainInfo);
 
-    const sideInfoSecond = createRightSide();
-    citiesParent.appendChild(sideInfoSecond);
+    //const sideInfoSecond = createRightSide();
+    //citiesParent.appendChild(sideInfoSecond);
 }
 
 async function showCity(name) {
